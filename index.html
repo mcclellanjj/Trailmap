@@ -15,9 +15,9 @@
 		body {
 			margin: 0;
 			padding: 0;
-			background: "whitesmoke";
-			font-family: "Noto Sans", sans-serif;
-			color: #3d3d3d;
+			background: #D7BE82;
+			font-family: "Georgia", sans-serif;
+			color: #400406;
 		}
 
 		h1 {
@@ -29,7 +29,8 @@
 			font-family: "Lora", serif;
 			letter-spacing: .04em;
 			padding: 10px 15px;
-			background: rgba(256, 256, 256);
+			background: #D7BE82;
+			opacity: 0.8;
 			border: 1px solid grey;
 			border-radius: 3px;
 			z-index: 800;
@@ -78,12 +79,12 @@
 
 <body>
 
-	<h1>Devil's Hole Loop Trail, Linville Gorge</h1>
+	<h1>Devil's Hole to Hawskbill Mountain: Linville Gorge, NC</h1>
 
 	<div id='map'></div>
 
 	<section>
-		<h2>Devil's Hole Loop Trail is a 6.7 mile loop in and out of Linville Gorge with 1,699 feet of elevation gain.</h2>
+		<h2>Devil's Hole Loop Trail is a 6.7 mile loop that combines the Devil's Hole, Linville Gorge, and Spencer's Ridge Trails</h2>
 
 		<p>Tree trunks grow however makes them happy. Only think about one thing at a time. Don't get greedy. We'll put a happy little sky in here. There is immense joy in just watching - watching all the little creatures in nature. We'll put some happy little leaves here and there.</p>
 
@@ -104,16 +105,17 @@
 
 //options to be used when creating the map
 		var options = {
-			center: [36.08403, -81.83015],
-			zoom: 16
+			center: [35.914512388467465, -81.90227724680148],
+			zoom: 14.5
 		}
 
 //creation of the Leaflet map
 		var map = L.map('map', options);
 
 //request to load basemap
-var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community; Map Author: Josh McClellan'
+var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+	maxZoom: 20,
+	attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 
@@ -137,10 +139,10 @@ var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 		},
 		style : function(feature) {
 		return {
-		color: "#A1766B",
-		weight: 6,
-		opacity: 0.8,
-		dashArray: "5, 15"
+		color: "#6A5147",
+		weight: 7,
+		opacity: 1,
+		dashArray: "5, 12"
 		}
 		}
 		}).addTo(map);
@@ -151,7 +153,8 @@ var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 		}
 		},
 		onEachFeature : function(feature, layer) {
-		console.log(feature.properties)
+		console.log(feature.properties);
+		layer.bindTooltip(feature.properties.name);
 		}
 		}).addTo(map);
 
