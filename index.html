@@ -154,10 +154,19 @@ var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}
 		},
 		onEachFeature : function(feature, layer) {
 		console.log(feature.properties);
-		layer.bindTooltip(feature.properties.name);
+		layer.bindPopup(feature.properties.name + ": " + feature.properties.desc,
+		);
 		}
 		}).addTo(map);
 
+		var hemlockIcon = L.icon({
+			iconURL: 'hemlock.png',
+
+			iconSize: [38, 95],
+			iconAnchor: [-81.901837,35.912564]
+		});
+
+		L.marker([-81.901837,35.912564], {icon:greenIcon}).addTo(map);
 
 	</script>
 
