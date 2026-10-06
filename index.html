@@ -79,7 +79,7 @@
 
 <body>
 
-	<h1>Devil's Hole to Hawskbill Mountain: Linville Gorge, NC</h1>
+	<h1>Devil's Hole to Hawksbill Mountain: Linville Gorge, NC</h1>
 
 	<div id='map'></div>
 
@@ -146,27 +146,104 @@ var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}
 		}
 		}
 		}).addTo(map);
-		var myStops = L.geoJson(data, {
-		filter : function(feature) {
-		if(feature.geometry.type == "Point") {
-		return feature;
-		}
-		},
-		onEachFeature : function(feature, layer) {
-		console.log(feature.properties);
-		layer.bindPopup(feature.properties.name + ": " + feature.properties.desc,
-		);
-		}
-		}).addTo(map);
 
-		var hemlockIcon = L.icon({
-			iconURL: 'hemlock.png',
 
-			iconSize: [38, 95],
-			iconAnchor: [-81.901837,35.912564]
+		var LeafIcon = L.Icon.extend({
+			options: {
+				shadowUrl: 'data/dropshadow.png',
+				iconSize: [38, 95],
+				shadowSize: [1, 1],
+				iconAnchor: [15, 38],   //shift icon horizontal, vertical
+				shadowAnchor: [8, -27],
+				popupAnchor: [0, 0]
+			}
 		});
 
-		L.marker([-81.901837,35.912564], {icon:greenIcon}).addTo(map);
+			chestnutIcon = new LeafIcon({
+				iconUrl: 'data/AmChe.png',
+				iconSize: [90, 80]
+			});
+
+			carhemIcon = new LeafIcon({
+				iconUrl: 'data/hemlock.png',
+				iconSize: [60, 80]
+			});
+			
+			riverIcon = new LeafIcon({
+			iconUrl: 'data/crossing.png',
+			iconSize: [35, 35]
+			});
+
+			waterIcon = new LeafIcon({
+				iconUrl: 'data/water.png',
+				iconSize: [35, 35]
+			});
+
+			trailIcon = new LeafIcon({
+				iconUrl: 'data/trailhead.png',
+				iconSize: [35,35]
+			});
+
+			destIcon = new LeafIcon({
+				iconUrl: 'data/dest.png',
+				iconSize: [35, 35]
+			});
+
+			myStops = L.geoJson(data, {
+
+			filter: function(feature) {
+				return feature.geometry.type == "Point";
+			},
+
+			pointToLayer: function(feature, latlng) {
+
+				if (feature.properties.name == "American Chestnut (Castanea dentata)") {
+					return L.marker(latlng, {
+						icon: chestnutIcon
+					});
+				}
+
+				else if (feature.properties.name == "River Crossing"
+				) {
+					return L.marker(latlng, {
+						icon: riverIcon
+					});
+				}
+
+				else if (feature.properties.name == "Linville Gorge Rim") {
+					return L.marker(latlng, {
+						icon: carhemIcon
+					});
+				}
+
+				else if (feature.properties.name == "Devil's Hole Trailhead") {
+					return L.marker(latlng, {
+						icon: trailIcon
+					});
+				}
+
+				else if (feature.properties.name == "Hawksbill Mountain") {
+					return L.marker(latlng, {
+						icon: destIcon
+					});
+				}
+
+				else if (feature.properties.name == "Swimming Hole") {
+					return L.marker(latlng, {
+						icon: waterIcon
+					});
+				}
+
+				return L.marker(latlng);
+			},
+
+			onEachFeature: function(feature, layer) {
+				layer.bindPopup(
+					feature.properties.name + ": " + feature.properties.desc
+				);
+			}
+		}).addTo(map);
+	
 
 	</script>
 
