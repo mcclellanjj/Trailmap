@@ -1,3 +1,10 @@
-### Title for my Trail Map Markdown Document
+### Linville Gorge Trail Map
 
-This map shows the Devil's Hole Loop Trail located in Linville Gorge, North Carolina. It is a 5.3 mile hike with a total elevation gain of 2,156 feet as you travel up and down the gorge.
+This map shows a hike from Devil's Hole Trail to Hawksbill Mountain via the Linville Gorge Trail. Located in Linville Gorge, North Carolina, this hike is a 5.3 mile hike with a total elevation gain of 2,156 feet as you travel up and down the gorge.
+
+## Data Attribution:
+Basemap provided by Leaflet and OpenStreetMap
+
+Trail data created using the custom route function in AllTrails and point data added mannually in GeoJSON.io
+
+Tree icons obtained from rawpixel and Heather Hamilton on Pinterest.
