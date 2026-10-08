@@ -104,7 +104,7 @@
 
 //options to be used when creating the map
 		var options = {
-			center: [35.915040444916045, -81.89695455236347],
+			center: [35.913906475835645, -81.89372344644481],
 			zoom: 14.5
 		}
 
@@ -202,8 +202,7 @@ var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}
 					});
 				}
 
-				else if (feature.properties.name == "Caution"
-				) {
+				else if (feature.properties.name == "Caution") {
 					return L.marker(latlng, {
 						icon: riverIcon
 					});
