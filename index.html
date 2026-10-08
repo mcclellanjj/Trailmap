@@ -29,10 +29,10 @@
 			font-family: "Lora", serif;
 			letter-spacing: .04em;
 			padding: 10px 15px;
-			background: #D7BE82;
-			opacity: 0.8;
+			background: #D29443;
+			opacity: 70%;
 			border: 1px solid grey;
-			border-radius: 3px;
+			border-radius: 12px;
 			z-index: 800;
 		}
 
@@ -52,12 +52,13 @@
 			position: absolute;
 			bottom: 0;
 			left: 10px;
-			width: 280px;
+			width: 340px;
 			margin: 20px auto;
 			padding: 0 15px;
-			background: rgba(256, 256, 256);
+			background: #8E8238;
+			opacity: 80%;
 			border: 1px solid grey;
-			border-radius: 3px;
+			border-radius: 12px;
 			z-index: 800;
 		}
 
@@ -84,7 +85,7 @@
 	<div id='map'></div>
 
 	<section>
-		<h2>Devil's Hole Loop Trail is a 6.7 mile loop that combines the Devil's Hole, Linville Gorge, and Spencer's Ridge Trails</h2>
+		<h2>Devil's Hole Loop Trail is a 5.3 mile trail that combines the Devil's Hole, Linville Gorge, and Spencer's Ridge Trails to reach Hawksbill Mountain</h2>
 
 		<p>Tree trunks grow however makes them happy. Only think about one thing at a time. Don't get greedy. We'll put a happy little sky in here. There is immense joy in just watching - watching all the little creatures in nature. We'll put some happy little leaves here and there.</p>
 
@@ -139,9 +140,9 @@ var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}
 		},
 		style : function(feature) {
 		return {
-		color: "#6A5147",
+		color: "#754214",
 		weight: 7,
-		opacity: 1,
+		opacity: 0.9,
 		dashArray: "5, 12"
 		}
 		}
@@ -165,8 +166,8 @@ var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}
 			});
 
 			carhemIcon = new LeafIcon({
-				iconUrl: 'data/hemlock.png',
-				iconSize: [60, 80]
+				iconUrl: 'data/carHem.png',
+				iconSize: [80, 100]
 			});
 			
 			riverIcon = new LeafIcon({
