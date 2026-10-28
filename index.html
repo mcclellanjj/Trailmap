@@ -1,266 +1,250 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset=utf-8 />
-<title>Hemlock Woolly Adelgid Infected Areas</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<meta charset=utf-8 />
+	<title>Linville Gorge Trailmap</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-<style>
-    body {
-    margin:0;
-    padding:0;
-    font-family:
-    sans-serif;
-    }
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
-  h1 {
-    position: absolute;
-    left: 80px;
-    top: 10px;
-    padding: 8px 2%;
-    margin: 0;
-    background: #515A47;
-    box-shadow: 10 20 55px rgba(0,0,0,0.9);
-    border-radius: 18px;
-    color: whitesmoke;
-    font-size: 1.5em;
-    z-index: 800;
-    }
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #D7BE82;
+			font-family: "Georgia", sans-serif;
+			color: #400406;
+		}
 
-    section {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: 420px;
-      height: 1000px;
-      background: #7a4419;
-      opacity: 85%;
-      z-index: 500;
-    }
+		h1 {
+			position: absolute;
+			margin-top: 0;
+			top: 10px;
+			left: 45px;
+			font-size: 2em;
+			font-family: "Lora", serif;
+			letter-spacing: .04em;
+			padding: 10px 15px;
+			background: #D29443;
+			opacity: 70%;
+			border: 1px solid grey;
+			border-radius: 12px;
+			z-index: 800;
+		}
 
-    .panel img {
-        display:block;
-        margin: 15px auto 0;
-      }
+		h2 {
+			font-family: "Lora", serif;
+			letter-spacing: .04em;
+		}
 
-      .panel p {
-        max-width: 300px;
-        margin: 10px auto 0;
-        text-align: center;
-        font-size: 12px;
-        color: #fff2e5;
-        font-family: Garamond;
-      }
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
 
-      #para1 {
-        max-width: 320px;
-        margin: 30px auto 0;
-        text-align: center;
-        font-size: 16px;
-        font-family: Franklin Gothic Medium;
-      }
+		section {
+			position: absolute;
+			bottom: 0;
+			left: 10px;
+			width: 340px;
+			margin: 20px auto;
+			padding: 0 15px;
+			background: #8E8238;
+			opacity: 80%;
+			border: 1px solid grey;
+			border-radius: 12px;
+			z-index: 800;
+		}
 
-      #att {
-        max-width: 400px;
-        text-align: center;
-        font-size: 14;
-        color: #cccccc;
-        margin: 35px auto 0;
-      }
+		p {
+			font-size: .9em;
+			line-height: 1.5em;
+		}
 
-      .info {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    padding: 8px 10px;
-    background: white;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-      }
+		a {
+			color: #005daa;
+			text-decoration: none;
+		}
 
-
-  #map {
-    position:absolute;
-    top:0;
-    bottom:0;
-    width:1020px;
-    height: 840px;
-   }
-
-   .legend {
-z-index: 1000;
-position: absolute;
-right: 428px;
-bottom: 67px;
-padding: 6px 8px;
-font: 14px Arial, Helvetica, sans-serif;
-background: white;
-background: rgba(255, 255, 255, 0.8);
-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-border-radius: 5px;
-}
-.legend i {
-width: 18px;
-height: 16px;
-float: left;
-margin-right: 8px;
-opacity: 0.7;
-}
-
-.leaflet-control-attribution {
-    position: absolute;
-    right: 5px;
-    bottom: 55px;
-    width: 300px;
-}
-</style>
-
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
 </head>
+
 <body>
-    <div id='map'></div>
-    <div class='legend'></div>
 
-    <h1>Distribution of Hemlock Woolly Adelgid in the Eastern United States</h1>
+	<h1>Devil's Hole to Hawksbill Mountain: via Linville Gorge, NC</h1>
 
-    <section class="panel">
-      
-      <img src="img/HWA.jpeg" width="350px", height="300px">
+	<div id='map'></div>
 
-      <p> Eastern Hemlock (<i>Tsuga canadensis</i>) that has been infested by Hemlock Woolly Adelgid (<i>Adelges tsugae</i>) <i>Photo credits: Connecticut Agricultural Experiment Station</i></p>
+	<section>
+		<h2>Devil's Hole Loop Trail is a 5.3 mile trail that combines the Devil's Hole, Linville Gorge, and Spencer's Ridge Trails to reach Hawksbill Mountain</h2>
 
+		<p>This hike offers awesome views of the gorge and plenty of cool things to see on the way, including rare species and some good swimming spots. Take a good look around and you'll definitely spot an American Chestnut or Carolina Hemlock on the way!
+		</p>
 
+		<p>Click here to learn more about Carolina Hemlock! <a href="https://www.conifers.org/~conifers/pi/Tsuga_caroliniana.php">conifers.org</a></p>
+		<p>Map authored by Josh McClellan</p>
 
+	</section>
 
-      <p id="para1">Hemlock Woolly Adelgid (<i>Adelges tsugae</i>) is an invasive insect native to eastern Asia and was first documented in the western U.S. by entomologist Percy Annand. Western hemlocks are mostly resistant to HWA and it is debated whether or not they are native to western North America. Hemlock Woolly Adelgid was first discovered in the eastern U.S. in the 1950s and has been detrimental to the health of eastern North American hemlock species including Eastern Hemlock (<i>Tsuga canadensis</i>) and Carolina Hemlock (<i>Tsuga caroliniana</i>). Hemlock Woolly Adelgid feeds on hemlocks at the base of the needles, which disrupts nutrient flow and typically causes mortality in 4 to 10 years. HWA infestation is easily identified by the woolly egg sacs on the underside of hemlock branches.</p>
-    
-      <p id="att">Information obtained from National Invasive Species Information Center, UMass Amherst Extension Landscape, Nursery and Urban Forestry Program</p>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 
-    </section>
+    <script src="data/route.js"></script>
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.4/chroma.min.js"></script>
+	<script>
 
+//options to be used when creating the map
+		var options = {
+			center: [35.913906475835645, -81.89372344644481],
+			zoom: 14.5
+		}
 
-<script>
+//creation of the Leaflet map
+		var map = L.map('map', options);
 
-var grades = [0, 72, 260, 420];
-
-var colors = chroma.scale('YlGn').colors(grades.length);
-
-function getColor(d) {
-    if (d == null || isNaN(d)) return '#cccccc';
-
-    for (var i = 0; i < grades.length - 1; i++) {
-        if (d >= grades[i] && d < grades[i + 1]) {
-            return colors[i];
-        }
-    }
-
-    return colors[grades.length - 1];
-}
-
-function style(feature) {
-      return {
-            weight: 2,
-            opacity: 1,
-            color: 'grey',
-            dashArray: '3',
-            fillOpacity: 0.7,
-            fillColor: getColor(feature.properties.HWA_reports)
-      };
-      }
-      
-
-
-var map = L.map('map', {
-        center: [38, -80.3],
-        zoom: 5
-    });
-
-    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-	maxZoom: 16
+//request to load basemap
+var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+	maxZoom: 20,
+	attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 
-var info = L.control();
 
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
+/*
+//string content to be inserted into a tooltip
+		var message = 'Beacon Heights!';
 
-info.update = function (props) {
-    this._div.innerHTML =
-        '<h3>Number of Reported HWA Sightings</h3>' +
-        (props
-            ? '<b>' + (props.State || 'State') + '</b><br />' +
-              props.HWA_reports + ' reports'
-            : 'Hover over a state');
-};
+//create a Leaflet marker, centered on the map's center.
+		L.marker(map.getCenter())
+			.bindTooltip(message) //bind the tooltip and message to the marker
+			.addTo(map) // add the marker to the map`
+			.openTooltip(); // open the tooltip
+		*/
 
-info.addTo(map);
-
-function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 3,
-        opacity: 1,
-        color: '#e3e3e3',
-        fillColor: '#400406',
-        fillOpacity: 0.5
-    });
-
-    layer.bringToFront();
-    info.update(layer.feature.properties);
-}
-
-function resetHighlight(e) {
-    states.resetStyle(e.target);
-    info.update();
-}
-
-function zoomToFeature(e) {
-    map.fitBounds(e.target.getBounds());
-}
-
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-    });
-}
+		var myRoute = L.geoJson(data, {
+		filter : function(feature) {
+		if(feature.geometry.type =="LineString") {
+		return feature;
+		}
+		},
+		style : function(feature) {
+		return {
+		color: "#754214",
+		weight: 7,
+		opacity: 0.9,
+		dashArray: "5, 12"
+		}
+		}
+		}).addTo(map);
 
 
-var labels = [];
+		var LeafIcon = L.Icon.extend({
+			options: {
+				shadowUrl: 'data/dropshadow.png',
+				iconSize: [38, 95],
+				shadowSize: [1, 1],
+				iconAnchor: [15, 28],   //shift icon horizontal, vertical
+				shadowAnchor: [8, -27],
+				popupAnchor: [0, 10]
+			}
+		});
 
-      for (var i = 0; i < grades.length - 1; i++) {
-          labels.push('<i style="background:' + colors[i] + '"></i> ' + grades[i] + ' - ' + grades[i + 1]);
-      }
+			chestnutIcon = new LeafIcon({
+				iconUrl: 'data/AmChe.png',
+				iconSize: [90, 80]
+			});
 
-      labels.push('<i style="background:' + colors[grades.length - 1] + '"></i> ' + grades[grades.length - 1] + ' +');
-      $(".legend").html(labels.join('<br>'));
+			carhemIcon = new LeafIcon({
+				iconUrl: 'data/carHem.png',
+				iconSize: [80, 100]
+			});
+			
+			riverIcon = new LeafIcon({
+			iconUrl: 'data/crossing.png',
+			iconSize: [35, 35]
+			});
 
+			waterIcon = new LeafIcon({
+				iconUrl: 'data/water.png',
+				iconSize: [35, 35]
+			});
 
-var states = L.geoJson.ajax("assets/HWA_gen.geojson", {
-    style: style,
-    onEachFeature: onEachFeature
-}).addTo(map);
+			trailIcon = new LeafIcon({
+				iconUrl: 'data/trailhead.png',
+				iconSize: [35,35]
+			});
 
-map.attributionControl.addAttribution(`
-  | HWA data &copy;
-  <a href="https://www.eddmaps.org/distribution/usstate.cfm?sub=289">Center for Invasive Species and Ecosystem Health, University of Georgia</a>
-  This map is made by Josh McClellan
-`);
+			destIcon = new LeafIcon({
+				iconUrl: 'data/dest.png',
+				iconSize: [35, 35]
+			});
 
-</script>
+			myStops = L.geoJson(data, {
+
+			filter: function(feature) {
+				return feature.geometry.type == "Point";
+			},
+
+			pointToLayer: function(feature, latlng) {
+
+				if (feature.properties.name == "American Chestnut (Castanea dentata)") {
+					return L.marker(latlng, {
+						icon: chestnutIcon
+					});
+				}
+
+				else if (feature.properties.name == "Caution") {
+					return L.marker(latlng, {
+						icon: riverIcon
+					});
+				}
+
+				else if (feature.properties.name == "Linville Gorge Rim") {
+					return L.marker(latlng, {
+						icon: carhemIcon
+					});
+				}
+
+				else if (feature.properties.name == "Devil's Hole Trailhead") {
+					return L.marker(latlng, {
+						icon: trailIcon
+					});
+				}
+
+				else if (feature.properties.name == "Hawksbill Mountain") {
+					return L.marker(latlng, {
+						icon: destIcon
+					});
+				}
+
+				else if (feature.properties.name == "Swimming Hole") {
+					return L.marker(latlng, {
+						icon: waterIcon
+					});
+				}
+
+				return L.marker(latlng);
+			},
+
+			onEachFeature: function(feature, layer) {
+				layer.bindPopup(
+					feature.properties.name + ": " + feature.properties.desc
+				);
+			}
+		}).addTo(map);
+	
+
+	</script>
+
 </body>
+
 </html>
